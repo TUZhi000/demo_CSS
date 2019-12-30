@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>爆炸效果</title>
+	<style type="text/css">
+		/*重置*/
+		*{
+			margin: 0;
+			padding: 0;
+			/*list-style: none;*/
+		}
+		#div1{
+			width: 640px;
+			height: 400px;
+			/*居中*/
+			/*position: absolute;
+			left: 50%;
+			margin-left: -320px;
+			top: 50%;
+			margin-top: -200px;*/
+			margin: 100px auto;
+			border: 1px solid black;
+			position: relative;
+			transform-style: preserve-3d;
+		}
+		#div1>div {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+		#div1>div>div{
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+
+	<script type="text/javascript">
+		var z = 999;
+		var index = 0;
+		var imgList = ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg'];
+		boom(10, 10);
+		function boom(m, n) {
+			var x = m;
+			var y = n;
+			var pDiv = document.getElementById('div1');
+			var parentDiv = document.createElement('div');
+			parentDiv.style.zIndex = z;
+			z--;
+			pDiv.appendChild(parentDiv);
+
+			for (var i = 0; i < y; i++) {
+				for (var j = 0; j < x; j++) {
+					var cDiv = document.createElement('div');
+					cDiv.style.background = 'url('+imgList[index]+')';
+					cDiv.style.width = pDiv.clientWidth / x + 'px';
+					cDiv.style.height = pDiv.clientHeight / y + 'px';
+					cDiv.style.left = (pDiv.clientWidth / x) * j + 'px';
+					cDiv.style.top = (pDiv.clientHeight / y) * i + 'px';
+					cDiv.style.backgroundPositionX = (pDiv.clientWidth / x) * -j + 'px';
+					cDiv.style.backgroundPositionY = (pDiv.clientHeight / y) * -i + 'px';
+					cDiv.style.transition = (Math.random()*1+0.5) + 's';
+					parentDiv.appendChild(cDiv);
+				}
+			}
+
+			var allDiv = parentDiv.children;
+			// 先转后移和先移后转有一定区别
+			// 过段时间后爆炸
+			setTimeout(function() {
+				index++;
+				if (index == imgList.length) {
+					index = 0;
+				}
+				boom(m, n);
+				for (var i = 0; i < allDiv.length; i++) {
+					allDiv[i].style.transform = 'translateX('+(Math.random()*400-200)+'px) translateY('+(Math.random()*400-200)+'px) rotateX('+(Math.random()*360-180)+'deg) rotateY('+(Math.random()*360-180)+'deg) translateZ('+(Math.random()*200+100)+'px)';
+					// 爆炸后消失
+					allDiv[i].style.opacity = 0;
+				}
+			},500);
+			
+			// 回位
+			// setTimeout(function() {
+			// 	for (var i = 0; i < allDiv.length; i++) {
+			// 		allDiv[i].style.transform = 'translateX(0px) translateY(0px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+			// 	}
+			// },3000);
+			
+			// 清除
+			setTimeout(function() {
+				parentDiv.remove();
+				// boom(m, n);
+			},2000);
+		}
+	</script>
+</body>
+</html>
