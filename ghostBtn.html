@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>幽灵按钮</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			background-color: #333;
+		}
+		.content{
+			width: 800px;
+			height: 400px;
+			/*background-color: red;*/
+			margin: 20px auto;
+		}
+		/* 响应式布局 */
+		@media screen and (min-width: 780px) {
+			.content .box{
+				width: 200px;
+				height: 250px;
+				float: left;
+				margin: 0 30px;
+			}
+		}
+		@media screen and (min-width: 400px) {
+			.content .box{
+				width: 200px;
+				height: 250px;
+			}
+		}
+		.box .icon{
+			width: 130px;
+			height: 130px;
+			margin: 0 auto;
+			/* 行内元素 设置高宽 需设置display */
+			display: block;
+			transition: all .2s;
+			/* 浏览器兼容问题 */
+			-webkit-transition: all .2s;
+			-o-transition: all .2s;
+			-moz-transition: all .2s;
+		}
+		.box .icon:hover{
+			transform: scale(1.2) rotate(360deg);
+			/* 浏览器兼容问题 */
+			-webkit-transform: scale(1.2) rotate(360deg);
+			-o-transform: scale(1.2) rotate(360deg);
+			-moz-transform: scale(1.2) rotate(360deg);
+		}
+		.box-1 .icon{
+			background: url('img/b1.png') no-repeat;
+		}
+		.box-2 .icon{
+			background: url('img/b2.png') no-repeat;
+		}
+		.box-3 .icon{
+			background: url('img/b3.png') no-repeat;
+		}
+
+		.box .button{
+			width: 156px;
+			height: 45px;
+			/* 垂直居中 */
+			line-height: 45px;
+			/* 行内元素 设置高宽 需设置display*/
+			display: block;
+			background: url('img/b4.png') no-repeat 120px center;
+			margin: 0 auto;
+			font-family: '微软雅黑';
+			font-size: 18px;
+			font-weight: bolder;
+			color: #2ecc71;
+			text-decoration: none;
+			padding-left: 15px;
+			border: 2px solid rgba(255,255,255,0.7);
+			transition: all .2s ease;
+			-webkit-transition: all .2s ease;
+			-o-transition: all .2s ease;
+			-moz-transition: all .2s ease;
+			position: relative;
+		}
+		.box .button:hover{
+			background: url('img/b4.png') no-repeat 130px center;
+			border: 2px solid rgba(255,255,255,1);
+		}
+
+		.box .line{
+			background-color: #fff;
+			display: block;
+			position: absolute;
+			transition: all .2s ease;
+			-webkit-transition: all .2s ease;
+			-o-transition: all .2s ease;
+			-moz-transition: all .2s ease;
+		}
+		/* 设置顶部线条 从左向右过渡到按钮的上边框位置 */
+		.box .line-top{
+			width: 0px;
+			height: 2px;
+			top: -2px;
+			left: -100px;
+			
+		}
+		.box .button:hover .line-top{
+			width: 175px;
+			left: -2px;
+		}
+		/* 设置底部线条 从右向左过渡到按钮的下边框位置 */
+		.box .line-bottom{
+			width: 0px;
+			height: 2px;
+			bottom: -2px;
+			right: -100px;
+		}
+		.box .button:hover .line-bottom{
+			width: 175px;
+			right: -2px;
+		}
+		/* 设置左部线条 从下向上过渡到按钮的左边框位置 */
+		.box .line-left{
+			width: 2px;
+			height: 0px;
+			bottom: -100px;
+			left: -2px;
+		}
+		.box .button:hover .line-left{
+			height: 49px;
+			bottom: -2px;
+		}
+		/* 设置右部线条 从上向下过渡到按钮的右边框位置 */
+		.box .line-right{
+			width: 2px;
+			height: 0px;
+			top: -100px;
+			right: -2px;
+		}
+		.box .button:hover .line-right{
+			height: 49px;
+			top: -2px;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div class="box box-1">
+			<span class="icon"></span>
+			<a href="#" class="button">
+				<span class="line line-top"></span>
+				<span class="line line-bottom"></span>
+				<span class="line line-right"></span>
+				<span class="line line-left"></span>
+				MISSION
+			</a>
+		</div>
+		<div class="box box-2">
+			<span class="icon"></span>
+			<a href="#" class="button">
+				<span class="line line-top"></span>
+				<span class="line line-bottom"></span>
+				<span class="line line-right"></span>
+				<span class="line line-left"></span>
+				MISSION
+			</a>
+		</div>
+		<div class="box box-3">
+			<span class="icon"></span>
+			<a href="#" class="button">
+				<span class="line line-top"></span>
+				<span class="line line-bottom"></span>
+				<span class="line line-right"></span>
+				<span class="line line-left"></span>
+				MISSION
+			</a>
+		</div>
+	</div>
+
+<script>
+	
+</script>
+</body>
+</html>
